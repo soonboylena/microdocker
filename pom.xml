@@ -63,6 +63,7 @@
                 <configuration>
                     <imageName>sunbo/${project.artifactId}:${project.version}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    <forceTags>true</forceTags>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>

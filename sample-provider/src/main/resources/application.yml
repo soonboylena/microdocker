@@ -12,7 +12,17 @@ management:
     web:
       exposure:
         include: ["health","info", "mappings", "env"]
-
 logging:
   level:
       root: info
+
+
+spring:
+  application:
+    name: sample-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka
+  instance:
+    prefer-ip-address: true
