@@ -109,7 +109,7 @@ hs_err_pid*
 将删除 sample-provider/src/main/resources/static/
 将删除 sample-provider/src/main/resources/templates/
 将删除 src/
-/.attach_pid*
+.attach_pid*
 !/microdocker.iml
 /microdocker.iml
-/.idea/
+.idea/
