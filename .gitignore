@@ -112,3 +112,4 @@ hs_err_pid*
 /.attach_pid*
 !/microdocker.iml
 /microdocker.iml
+/.idea/
