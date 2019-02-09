@@ -25,8 +25,10 @@ eureka:
   server:
     peer-node-read-timeout-ms: 400
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://eureka-peer2:8762/eureka
+      defaultZone: http://eureka-peer2:8762/eureka/
   instance:
     hostname: eureka-${spring.profiles}
 
@@ -44,6 +46,8 @@ eureka:
     peer-node-read-timeout-ms: 400
   client:
     service-url:
-      defaultZone: http://eureka-peer1:8761/eureka
+      defaultZone: http://eureka-peer1:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
   instance:
     hostname: eureka-${spring.profiles}

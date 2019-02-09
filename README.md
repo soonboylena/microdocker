@@ -65,10 +65,13 @@
 
 `https://docs.docker.com/compose/completion/`
 
-#### 运行
+#### 运行 (后台运行加 -d)
 `cd docker-compose && docker-compose up --scale provider=2`
 
+#### 运行eureka-ha (后台运行加 -d)
+`cd docker-compose && docker-compose -f ./docker-compose-ha.yml up --scale provider=2`
 
 
-
+### 问题
+跨主机网络如何实现？
 
