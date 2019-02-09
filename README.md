@@ -65,6 +65,8 @@
 
 `https://docs.docker.com/compose/completion/`
 
+#### 运行
+`cd docker-compose && docker-compose up --scale provider=2`
 
 
 

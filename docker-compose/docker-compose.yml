@@ -1,0 +1,10 @@
+version: '2'
+services:
+  eureka:
+    image: sunbo/eureka-server:0.0.1-SNAPSHOT
+    ports:
+      - "9000:8761"
+  provider:
+    image: sunbo/sample-provider:0.0.1-SNAPSHOT
+    depends_on:
+      - eureka
