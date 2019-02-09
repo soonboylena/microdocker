@@ -1,0 +1,23 @@
+version: '2'
+services:
+  eureka-peer1:
+    image: sunbo/eureka-server:0.0.1-SNAPSHOT
+    ports:
+      - "9001:8761"
+    environment:
+      - spring.profiles.active=peer1
+  eureka-peer2:
+    image: sunbo/eureka-server:0.0.1-SNAPSHOT
+    ports:
+      - "9002:8762"
+    environment:
+      - spring.profiles.active=peer2
+    depends_on:
+      - eureka-peer1
+  provider:
+    image: sunbo/sample-provider:0.0.1-SNAPSHOT
+    depends_on:
+      - eureka-peer1
+      - eureka-peer2
+    environment:
+      - spring.profiles.active=provider-ha

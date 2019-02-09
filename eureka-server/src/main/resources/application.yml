@@ -1,8 +1,49 @@
+#-----默认单点-----
 server:
-  port: 8761
+  port: 8760
+
+spring:
+  application:
+    name: eureka
+
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8760/eureka
+
+#-----peer1: 高可用节点1-----
+---
+spring:
+  profiles: peer1
+#  application:
+#    name: eureka-peer1
+server:
+  port: 8761
+eureka:
+  server:
+    peer-node-read-timeout-ms: 400
+  client:
+    service-url:
+      defaultZone: http://eureka-peer2:8762/eureka
+  instance:
+    hostname: eureka-${spring.profiles}
+
+
+#-----peer2: 高可用节点2-----
+---
+spring:
+  profiles: peer2
+#  application:
+#    name: eureka-peer2
+server:
+  port: 8762
+eureka:
+  server:
+    peer-node-read-timeout-ms: 400
+  client:
+    service-url:
+      defaultZone: http://eureka-peer1:8761/eureka
+  instance:
+    hostname: eureka-${spring.profiles}

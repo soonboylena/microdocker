@@ -2,11 +2,11 @@ server:
   port: 8080
 info:
   app:
-      name: @project.artifactId@
-      encoding: @project.build.sourceEncoding@
-      java:
-          source: @java.version@
-          target: @java.version@
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
 management:
   endpoints:
     web:
@@ -14,15 +14,26 @@ management:
         include: ["health","info", "mappings", "env"]
 logging:
   level:
-      root: info
+    root: info
 
 
+## 默认单个结点
 spring:
   application:
     name: sample-provider
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka:8761/eureka
-  instance:
-    prefer-ip-address: true
+      defaultZone: http://eureka:8760/eureka
+
+---
+## --- 高可用 ---
+
+spring:
+  profiles: provider-ha
+  application:
+    name: sample-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-peer1:8761/eureka, http://eureka-peer2:8762/eureka
