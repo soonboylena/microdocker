@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 services:
   eureka-peer1:
     image: sunbo/eureka-server:0.0.1-SNAPSHOT
@@ -16,8 +16,23 @@ services:
       - eureka-peer1
   provider:
     image: sunbo/sample-provider:0.0.1-SNAPSHOT
+    scale: 3
     depends_on:
       - eureka-peer1
       - eureka-peer2
     environment:
       - spring.profiles.active=provider-ha
+#    deploy:
+#      mode: replicated
+#      replicas: 3
+  gateway:
+    image: sunbo/gateway:0.0.1-SNAPSHOT
+    scale: 2
+    depends_on:
+      - eureka-peer1
+      - eureka-peer2
+    environment:
+      - spring.profiles.active=ha
+#    deploy:
+#      mode: replicated
+#      replicas: 2

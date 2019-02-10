@@ -8,3 +8,7 @@ services:
     image: sunbo/sample-provider:0.0.1-SNAPSHOT
     depends_on:
       - eureka
+  gateway:
+    image: sunbo/gateway-SNAPSHOT
+    depends_on:
+      - eureka
