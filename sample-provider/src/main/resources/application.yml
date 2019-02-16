@@ -1,5 +1,5 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
 info:
   app:
     name: @project.artifactId@
@@ -15,12 +15,11 @@ management:
 logging:
   level:
     root: info
-
-
-## 默认单个结点
 spring:
   application:
     name: sample-provider
+
+## 默认单个结点
 eureka:
   client:
     service-url:
@@ -31,8 +30,6 @@ eureka:
 
 spring:
   profiles: provider-ha
-  application:
-    name: sample-provider
 eureka:
   client:
     service-url:

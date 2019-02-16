@@ -27,12 +27,14 @@ services:
 #      replicas: 3
   gateway:
     image: sunbo/gateway:0.0.1-SNAPSHOT
-    scale: 2
+    scale: 1
     depends_on:
       - eureka-peer1
       - eureka-peer2
     environment:
       - spring.profiles.active=ha
+    ports:
+      - "10000:8080"
 #    deploy:
 #      mode: replicated
 #      replicas: 2

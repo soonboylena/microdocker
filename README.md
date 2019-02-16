@@ -79,3 +79,9 @@
 ### 问题
 跨主机网络如何实现？
 
+#### 使用脚本控制各服务数量
+`mvn clean package -Dmaven.test.skip=true`
+
+`docker-compose -f docker-compose/docker-compose-ha.yml up`
+
+`docker-compose -f docker-compose/docker-compose-ha.yml up --scale provider=4`
