@@ -16,7 +16,7 @@ services:
       - eureka-peer1
   provider:
     image: sunbo/sample-provider:0.0.1-SNAPSHOT
-    scale: 3
+    scale: 2
     depends_on:
       - eureka-peer1
       - eureka-peer2

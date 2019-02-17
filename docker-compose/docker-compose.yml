@@ -8,6 +8,8 @@ services:
     image: sunbo/sample-provider:0.0.1-SNAPSHOT
     depends_on:
       - eureka
+    environment:
+      - spring.profiles.active=provider-s
   gateway:
     image: sunbo/gateway-SNAPSHOT
     depends_on:
