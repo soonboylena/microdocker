@@ -1,0 +1,35 @@
+#server:
+#  port: 8080
+logging:
+  level:
+    root: info
+spring:
+  application:
+    name: sample-aggregate
+
+---
+spring:
+  profiles: default
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka
+
+---
+## 单个结点
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8760/eureka
+spring:
+  profiles: provider-s
+
+---
+## --- 高可用 ---
+
+spring:
+  profiles: provider-ha
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-peer1:8761/eureka, http://eureka-peer2:8762/eureka

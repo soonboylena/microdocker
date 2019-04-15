@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: gateway
+
+---
+########################## router p1
+spring:
+  profiles: route-p1
+  cloud:
+    gateway:
+      routes:
+        - id: sample-provider
+          # lb:LoadBalancerClient
+          uri: lb://sample-provider
+          predicates:
+            - Path=/sp/**
+          filters:
+            - StripPrefix=1
+---
+########################## router agg
+spring:
+  profiles: route-agg
+  cloud:
+    gateway:
+      routes:
+        - id: route-agg
+          # lb:LoadBalancerClient
+          uri: lb://sample-aggregate
+          predicates:
+            - Path=/agg/**
+          filters:
+            - StripPrefix=1
+
+---
+############################## 单eureka 8760
+spring:
+  profiles: single-eureka
+## 默认单个结点
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8760/eureka
+
+---
+############################### eureka 高可用
+spring:
+  profiles:ha-eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-peer1:8761/eureka, http://eureka-peer2:8762/eureka
+
+
+
