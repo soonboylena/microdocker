@@ -20,14 +20,6 @@ spring:
     name: sample-provider
 
 ---
-spring:
-  profiles: local
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8760/eureka
-
----
 ## 单个结点
 eureka:
   client:

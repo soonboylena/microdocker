@@ -23,6 +23,13 @@
 
 `sudo apt-get update`
 
+### 当前用户加到组里边(如果有权限问题)
+`sudo usermod -aG docker $USER`
+
+`sudo chmod a+rwx /var/run/docker.sock`
+
+`sudo chmod a+rwx /var/run/docker.pid`
+
 ### 安装docker,记得重启一下
 `sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
@@ -31,17 +38,19 @@
 ## docker使用
 ### build and package
 
-`mvn clean package`
+`mvn clean package -Dmaven.test.skip=true`
 
 ### 建一个名字叫micro的网络
 
-`sudo docker network inspect micro`
+`sudo docker network create micro`
 
 ### 启动eureka 
-`sudo docker run -d --name eureka --net micro -p 9000:8761 sunbo/eureka-server:0.0.1-SNAPSHOT`
+`sudo docker run --rm --name eureka -e "SPRING_PROFILES_ACTIVE=single-eureka" --net micro -p 9000:8760 sunbo/eureka-server:1.0-SNAPSHOT`
+#### 删除同名的container
+`sudo docker container rm eureka`
 
 ### 启动服务provider
-`sudo docker run -d --name provider --net micro -p 9001:8080 sunbo/sample-provider:0.0.1-SNAPSHOT`
+`sudo docker run --rm --name provider -e "SPRING_PROFILES_ACTIVE=provider-s" --net micro -p 9001:8080 sunbo/sample-provider:1.0-SNAPSHOT`
 
 ### 访问eureka
 
@@ -66,12 +75,13 @@
 `https://docs.docker.com/compose/completion/`
 
 #### 运行 (后台运行加 -d)
-`cd docker-compose && docker-compose up --scale provider=2`
+`docker-compose -f docker-compose/docker-compose.yml up --scale provider=2`
+
 #### 访问eureka
 `http://locahost:9000`
 
 #### 运行eureka-ha (后台运行加 -d)
-`cd docker-compose && docker-compose -f ./docker-compose-ha.yml up --scale provider=2`
+`docker-compose -f docker-compose/docker-compose-ha.yml up --scale provider=2`
 #### 访问eureka
 `http://locahost:9001`
 `http://locahost:9002`

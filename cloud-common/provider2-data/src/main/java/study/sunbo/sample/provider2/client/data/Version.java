@@ -1,4 +1,4 @@
-package study.sunbo.provider2.data;
+package study.sunbo.sample.provider2.client.data;
 
 import lombok.Data;
 

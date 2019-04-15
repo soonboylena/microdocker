@@ -6,6 +6,9 @@ spring:
   application:
     name: eureka
 
+---
+spring:
+  profiles: single-eureka
 eureka:
   client:
     register-with-eureka: false

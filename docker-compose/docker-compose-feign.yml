@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 services:
   eureka:
     image: sunbo/eureka-server:1.0-SNAPSHOT
@@ -12,6 +12,20 @@ services:
       - eureka
     environment:
       - spring.profiles.active=provider-s
+  provider2:
+    image: sunbo/sample-provider2:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    environment:
+      - spring.profiles.active=provider-s
+  aggregate:
+    image: sunbo/sample-aggregate:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    ports:
+      - "4001:8080"
+    environment:
+      - spring.profiles.active=provider-s
   gateway:
     image: sunbo/gateway:1.0-SNAPSHOT
     depends_on:
@@ -19,4 +33,4 @@ services:
     ports:
       - "3000:8080"
     environment:
-      - spring.profiles.active=single-eureka,route-p1
+      - spring.profiles.active=feign

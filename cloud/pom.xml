@@ -21,6 +21,7 @@
         <module>gateway</module>
         <module>sample-provider</module>
         <module>sample-provider2</module>
+        <module>sample-aggregate</module>
     </modules>
 
     <properties>
