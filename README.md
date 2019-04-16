@@ -71,8 +71,9 @@
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose && docker-compose --version`
 
 #### 安装命令行提示 
-
 `https://docs.docker.com/compose/completion/`
+
+-----------------
 
 #### 运行 (后台运行加 -d)
 `docker-compose -f docker-compose/docker-compose.yml up --scale provider=2`
@@ -80,11 +81,37 @@
 #### 访问eureka
 `http://locahost:9000`
 
+-----------------
+
 #### 运行eureka-ha (后台运行加 -d)
 `docker-compose -f docker-compose/docker-compose-ha.yml up --scale provider=2`
 #### 访问eureka
 `http://locahost:9001`
 `http://locahost:9002`
+
+#### 测试gateway
+`curl  http://localhost:3000/sp/time`
+
+-----------------
+
+#### feign示例
+`docker-compose -f docker-compose/docker-compose-feign.yml up`
+
+增加provider2
+
+`docker-compose -f docker-compose/docker-compose-feign.yml up --scale provider2=2 -d`
+
+#### 测试gateway
+
+`curl http://localhost:3000/agg/aggre/versionFromP2`
+
+----
+
+
+
+
+
+
 
 ### 问题
 跨主机网络如何实现？

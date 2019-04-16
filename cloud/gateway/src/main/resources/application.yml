@@ -41,14 +41,21 @@ eureka:
     service-url:
       defaultZone: http://eureka:8760/eureka
 
----
 ############################### eureka 高可用
+---
 spring:
-  profiles:ha-eureka
+  profiles: ha-eureka
 eureka:
   client:
     service-url:
       defaultZone: http://eureka-peer1:8761/eureka, http://eureka-peer2:8762/eureka
 
-
-
+############################## 单eureka localhost:8760
+---
+spring:
+  profiles: local-eureka
+## 默认单个结点
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka

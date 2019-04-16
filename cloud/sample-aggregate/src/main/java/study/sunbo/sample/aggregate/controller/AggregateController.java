@@ -20,4 +20,9 @@ public class AggregateController {
     public Version getVersionFromProvider2() {
         return versionService.version();
     }
+
+    @GetMapping("getNumber")
+    public int getNumber() {
+        return versionService.sometimeException();
+    }
 }

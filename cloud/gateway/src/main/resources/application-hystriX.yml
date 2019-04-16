@@ -1,0 +1,7 @@
+############################## feign：单注册中心，p1,agg
+spring:
+  profiles:
+    include:
+      - local-eureka
+      - route-p1
+      - route-agg

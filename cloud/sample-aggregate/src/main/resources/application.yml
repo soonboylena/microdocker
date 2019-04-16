@@ -3,9 +3,14 @@
 logging:
   level:
     root: info
+    com.netflix.client: debug
+    com.netflix.loadbalancer: debug
 spring:
   application:
     name: sample-aggregate
+feign:
+  hystrix:
+    enabled: true
 
 ---
 spring:
@@ -13,7 +18,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8760/eureka
+      defaultZone: http://eureka:8760/eureka
 
 ---
 ## 单个结点
@@ -23,6 +28,24 @@ eureka:
       defaultZone: http://eureka:8760/eureka
 spring:
   profiles: provider-s
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+sample-provider2:
+  ribbon:
+    eureka:
+      enabled: true
+    MaxAutoRetriesNextServer: 1
+    ReadTimeout: 1000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
 
 ---
 ## --- 高可用 ---
@@ -33,3 +56,14 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-peer1:8761/eureka, http://eureka-peer2:8762/eureka
+
+---
+## 本地
+server:
+  port: 8081
+spring:
+  profiles: local
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka

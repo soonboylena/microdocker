@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 info:
   app:
@@ -18,7 +18,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8760/eureka
+      defaultZone: http://eureka:8760/eureka
 
 ---
 ## 单个结点
@@ -28,3 +28,12 @@ eureka:
       defaultZone: http://eureka:8760/eureka
 spring:
   profiles: provider-s
+
+---
+## 单个结点
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka
+spring:
+  profiles: local
