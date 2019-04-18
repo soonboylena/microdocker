@@ -22,6 +22,8 @@
         <module>sample-provider</module>
         <module>sample-provider2</module>
         <module>sample-aggregate</module>
+        <module>turbine</module>
+        <module>hystrix-dashboard</module>
     </modules>
 
     <properties>

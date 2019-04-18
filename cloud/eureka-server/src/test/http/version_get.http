@@ -24,6 +24,7 @@ Accept: application/vnd.spring-boot.actuator.v2+json
 ###
 GET http://localhost:8080/actuator/evn
 Accept: application/json
+
 ###
 
 #自己的接口

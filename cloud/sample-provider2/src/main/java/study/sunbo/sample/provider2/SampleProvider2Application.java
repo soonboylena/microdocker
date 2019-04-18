@@ -38,7 +38,7 @@ public class SampleProvider2Application {
             if (i == 4) {
                 log.warn(" **********************触发异常！！");
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

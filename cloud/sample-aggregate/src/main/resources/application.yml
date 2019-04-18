@@ -8,10 +8,36 @@ logging:
 spring:
   application:
     name: sample-aggregate
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 feign:
   hystrix:
     enabled: true
 
+# 配置hystrix.stream
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["health","info", "mappings", "env", "hystrix.stream"]
+#配置retry
+sample-provider2:
+  ribbon:
+    eureka:
+      enabled: true
+    MaxAutoRetriesNextServer: 1
+    MaxAutoRetries: 0
+    ReadTimeout: 1000
+#配置hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
 ---
 spring:
   profiles: default
@@ -28,24 +54,6 @@ eureka:
       defaultZone: http://eureka:8760/eureka
 spring:
   profiles: provider-s
-  cloud:
-    loadbalancer:
-      retry:
-        enabled: true
-sample-provider2:
-  ribbon:
-    eureka:
-      enabled: true
-    MaxAutoRetriesNextServer: 1
-    ReadTimeout: 1000
-
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000
 
 ---
 ## --- 高可用 ---

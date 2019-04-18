@@ -20,7 +20,7 @@ public class VersionServiceDefaultFallbackFactory implements FallbackFactory<Ver
 
             @Override
             public int sometimeException() {
-                log.warn(" 失败： {}", throwable.getMessage());
+                log.warn(" 失败： {}-{}", throwable.getClass().getSimpleName(), throwable.getMessage());
                 return 999;
             }
         };

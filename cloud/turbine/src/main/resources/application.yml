@@ -1,0 +1,18 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: turbine
+
+---
+spring:
+  profiles: single-eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8760/eureka
+turbine:
+  app-config: gateway,sample-aggregate
+  cluster-name-expression: "'default'"
+#  clusterNameExpression: "'default'"

@@ -1,7 +1,5 @@
 
 
-
-
 # docker
 
 ## 安装docker (ubuntu)
@@ -89,7 +87,7 @@
 `http://locahost:9001`
 `http://locahost:9002`
 
-#### 测试gateway
+#### 测试gateway, 查看lb
 `curl  http://localhost:3000/sp/time`
 
 -----------------
@@ -107,6 +105,24 @@
 
 ----
 
+### fallback and retry
+
+`curl http://localhost:3000/agg/aggre/getNumber`
+
+
+---
+
+### dashboard:
+
+'http://localhost:5001/hystrix/monitor?stream=http%3A%2F%2Faggregate%3A8080%2Factuator%2Fhystrix.stream'
+
+---
+
+### turbine:
+
+'http://localhost:5001/hystrix/monitor?stream=http%3A%2F%2Fturbine%3A9000%2Fturbine.stream'
+ 
+---
 
 
 
