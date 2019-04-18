@@ -37,3 +37,11 @@ eureka:
       defaultZone: http://localhost:8760/eureka
 spring:
   profiles: local
+
+---
+
+spring:
+  profiles: sleuth-log
+logging:
+  level:
+    org.springframework.cloud.sleuth: debug

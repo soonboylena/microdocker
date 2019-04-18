@@ -1,0 +1,37 @@
+version: '2.2'
+services:
+  eureka:
+    image: sunbo/eureka-server:1.0-SNAPSHOT
+    ports:
+      - "9000:8760"
+    environment:
+      - spring.profiles.active=single-eureka
+  #  provider:
+  #    image: sunbo/sample-provider:1.0-SNAPSHOT
+  #    depends_on:
+  #      - eureka
+  #    environment:
+  #      - spring.profiles.active=provider-s
+  provider2:
+    image: sunbo/sample-provider2:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    environment:
+      - spring.profiles.active=provider-s,sleuth-log
+    scale: 2
+  aggregate:
+    image: sunbo/sample-aggregate:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    ports:
+      - "4001:8080"
+    environment:
+      - spring.profiles.active=provider-s,sleuth-log
+  gateway:
+    image: sunbo/gateway:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    ports:
+      - "3000:8080"
+    environment:
+      - spring.profiles.active=single-eureka,route-agg
