@@ -49,7 +49,7 @@ services:
     volumes:
       - /opt/ELK/conf/kibana.yml:/etc/kibana/kibana.yml
   logstash: #服务名称（不是容器名）
-    image: logstash  #使用的镜像
+    image: docker.elastic.co/logstash/logstash:6.7.1 #使用的镜像
     restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
     container_name: logstash #容器名称
     #挂载文件1.自定义配置文件 2.logstash启动配置文件 3.文件读取的挂载路径
