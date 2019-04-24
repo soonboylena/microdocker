@@ -18,6 +18,8 @@ services:
     restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
     container_name: logstash #容器名称
     #挂载文件1.自定义配置文件 2.logstash启动配置文件 3.文件读取的挂载路径
+    ports:
+      - "5400:5400"
     volumes:
       - /opt/ELK/conf/logstash.conf:/etc/logstash/conf.d/logstash.conf
       - /opt/ELK/conf/logstash.yml:/etc/logstash/logstash.yml
