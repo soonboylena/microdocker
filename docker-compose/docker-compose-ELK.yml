@@ -22,4 +22,4 @@ services:
       - "5400:5400"
     volumes:
       - /opt/micro/ELK/config/logstash.conf:/etc/logstash/conf.d/logstash.conf
-      - /opt/ELK/conf/logstash.yml:/etc/logstash/logstash.yml
+      - /opt/micro/ELK/conf/logstash.yml:/etc/logstash/logstash.yml
