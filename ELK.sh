@@ -7,5 +7,5 @@ echo "脚本路径：$work_path"
 sudo mkdir -p /opt/micro/ELK/
 sudo mkdir -p /opt/micro/ELK/log
 sudo chown -R $USER /opt/micro
-sudo ln -s $work_path/ELK/config /opt/micro/ELK/config
+sudo ln -s $work_path/ELK/config/ /opt/micro/ELK/
 
