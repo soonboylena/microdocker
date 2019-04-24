@@ -21,5 +21,5 @@ services:
     ports:
       - "5400:5400"
     volumes:
-      - /opt/ELK/conf/logstash.conf:/etc/logstash/conf.d/logstash.conf
+      - /opt/micro/ELK/config/logstash.conf:/etc/logstash/conf.d/logstash.conf
       - /opt/ELK/conf/logstash.yml:/etc/logstash/logstash.yml

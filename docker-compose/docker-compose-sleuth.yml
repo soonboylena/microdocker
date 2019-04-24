@@ -50,5 +50,5 @@ services:
     volumes:
 #      - /home/sunb/stroage/dockerVolumn/micro/filebeat/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
 #      - /home/sunb/stroage/dockerVolumn/micro/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - /opt/micro/ELK/config/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /opt/micro/ELK/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
 
