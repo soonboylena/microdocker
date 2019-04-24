@@ -12,6 +12,9 @@ spring:
   application:
     name: sample-provider2
 
+logging:
+  file: /log/${spring.application.name}.log
+
 ---
 spring:
   profiles: local

@@ -12,12 +12,15 @@ management:
     web:
       exposure:
         include: ["health","info", "mappings", "env"]
-logging:
-  level:
-    root: info
 spring:
   application:
     name: sample-provider
+
+logging:
+  file: /log/${spring.application.name}.log
+  level:
+    root: info
+
 
 ---
 ## 单个结点

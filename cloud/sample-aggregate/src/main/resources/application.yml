@@ -5,6 +5,7 @@ logging:
     root: info
     com.netflix.client: debug
     com.netflix.loadbalancer: debug
+  file: /log/${spring.application.name}.log
 spring:
   application:
     name: sample-aggregate

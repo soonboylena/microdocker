@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: eureka
+logging:
+  file: /log/${spring.application.name}.log
 
 ---
 spring:

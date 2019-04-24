@@ -1,59 +1,52 @@
 version: '2.2'
 services:
-#  eureka:
-#    image: sunbo/eureka-server:1.0-SNAPSHOT
-#    ports:
-#      - "9000:8760"
-#    environment:
-#      - spring.profiles.active=single-eureka
-#  #  provider:
-#  #    image: sunbo/sample-provider:1.0-SNAPSHOT
-#  #    depends_on:
-#  #      - eureka
-#  #    environment:
-#  #      - spring.profiles.active=provider-s
-#  provider2:
-#    image: sunbo/sample-provider2:1.0-SNAPSHOT
-#    depends_on:
-#      - eureka
-#    environment:
-#      - spring.profiles.active=provider-s,sleuth-log
-#    scale: 2
-#  aggregate:
-#    image: sunbo/sample-aggregate:1.0-SNAPSHOT
-#    depends_on:
-#      - eureka
-#    ports:
-#      - "4001:8080"
-#    environment:
-#      - spring.profiles.active=provider-s,sleuth-log
-#  gateway:
-#    image: sunbo/gateway:1.0-SNAPSHOT
-#    depends_on:
-#      - eureka
-#    ports:
-#      - "3000:8080"
-#    environment:
-#      - spring.profiles.active=single-eureka,route-agg
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.1
+  eureka:
+    image: sunbo/eureka-server:1.0-SNAPSHOT
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "9000:8760"
     environment:
-      - discovery.type=single-node
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.7.1
+      - spring.profiles.active=single-eureka
+    volumes:
+      - /opt/micro/ELK/log/:/log/
+    #  provider:
+    #    image: sunbo/sample-provider:1.0-SNAPSHOT
+    #    depends_on:
+    #      - eureka
+    #    environment:
+    #      - spring.profiles.active=provider-s
+  provider2:
+    image: sunbo/sample-provider2:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    environment:
+      - spring.profiles.active=provider-s,sleuth-log
+    #      scale: 2
+    volumes:
+      - /opt/micro/ELK/log/:/log/
+  aggregate:
+    image: sunbo/sample-aggregate:1.0-SNAPSHOT
+    depends_on:
+      - eureka
     ports:
-      - "5601:5601"
+      - "4001:8080"
+    environment:
+      - spring.profiles.active=provider-s,sleuth-log
     volumes:
-      - /opt/ELK/conf/kibana.yml:/etc/kibana/kibana.yml
-  logstash: #服务名称（不是容器名）
-    image: docker.elastic.co/logstash/logstash:6.7.1 #使用的镜像
-    restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
-    container_name: logstash #容器名称
-    #挂载文件1.自定义配置文件 2.logstash启动配置文件 3.文件读取的挂载路径
+      - /opt/micro/ELK/log/:/log/
+  gateway:
+    image: sunbo/gateway:1.0-SNAPSHOT
+    depends_on:
+      - eureka
+    ports:
+      - "3000:8080"
+    environment:
+      - spring.profiles.active=single-eureka,route-agg
     volumes:
-      - /opt/ELK/conf/logstash.conf:/etc/logstash/conf.d/logstash.conf
-      - /opt/ELK/conf/logstash.yml:/etc/logstash/logstash.yml
-      - /opt/ELK/conf/1.txt:/etc/logstash/1.txt
+      - /opt/micro/ELK/log/:/log/
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:6.7.1
+#    volumes:
+      #      - /home/sunb/stroage/dockerVolumn/micro/filebeat/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+#      - /home/sunb/stroage/dockerVolumn/micro/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+#      - /home/sunb/stroage/dockerVolumn/micro/:/usr/share/filebeat/filebeat.yml
+
