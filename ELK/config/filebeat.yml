@@ -4,7 +4,7 @@ filebeat:
       path: ${path.config}/modules.d/*.yml
       reload:
         enabled: false
-  prospectors:
+  inputs:
     - paths:
         - "/opt/micro/ELK/log/*"
       type: log
