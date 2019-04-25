@@ -6,8 +6,8 @@ services:
       - "9000:8760"
     environment:
       - spring.profiles.active=single-eureka
-    volumes:
-      - /opt/micro/ELK/log/:/log/
+#    volumes:
+#      - /opt/micro/ELK/log/:/log/
     #  provider:
     #    image: sunbo/sample-provider:1.0-SNAPSHOT
     #    depends_on:
@@ -40,7 +40,7 @@ services:
     ports:
       - "3000:8080"
     environment:
-      - spring.profiles.active=single-eureka,route-agg
+      - spring.profiles.active=single-eureka,route-agg,sleuth-log
     volumes:
       - /opt/micro/ELK/log/:/log/
   filebeat:
