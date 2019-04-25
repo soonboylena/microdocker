@@ -6,7 +6,7 @@ filebeat:
         enabled: false
   inputs:
     - paths:
-        - "/opt/micro/ELK/log/*"
+        - "/log/*"
       type: log
       enabled: true
       tags: [micro]
