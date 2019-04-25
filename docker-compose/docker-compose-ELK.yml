@@ -23,8 +23,8 @@ services:
       - elasticsearch
     depends_on:
       - elasticsearch
-    restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
-    container_name: logstash #容器名称
+#    restart: "always" #重启策略，能够使服务保持始终运行，生产环境推荐使用
+#    container_name: logstash #容器名称
     ports:
       - "5400:5400"
     command: logstash -f /config-dir/logstash.conf
