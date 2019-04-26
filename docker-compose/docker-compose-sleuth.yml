@@ -41,8 +41,8 @@ services:
       - "3000:8080"
     environment:
       - spring.profiles.active=single-eureka,route-agg,sleuth-log
-    volumes:
-      - /opt/micro/ELK/log/:/log/
+#    volumes:
+#      - /opt/micro/ELK/log/:/log/
   filebeat:
     image: docker.elastic.co/beats/filebeat:6.7.1
     user: root
