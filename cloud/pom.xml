@@ -24,6 +24,7 @@
         <module>sample-aggregate</module>
         <module>turbine</module>
         <module>hystrix-dashboard</module>
+        <module>zipkin-server</module>
     </modules>
 
     <properties>

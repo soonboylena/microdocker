@@ -48,3 +48,12 @@ spring:
 logging:
   level:
     org.springframework.cloud.sleuth: debug
+
+---
+spring:
+  profiles: zipkin
+  zipkin:
+    base-url: http://zipkinServer:8080
+  sleuth:
+    sampler:
+      probability: 0.5

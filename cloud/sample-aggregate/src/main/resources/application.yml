@@ -78,7 +78,6 @@ eureka:
       defaultZone: http://localhost:8760/eureka
 
 ---
-
 spring:
   profiles: sleuth-log
 logging:
@@ -86,3 +85,11 @@ logging:
     org.springframework.cloud.sleuth: debug
 
 
+---
+spring:
+  profiles: zipkin
+  zipkin:
+    base-url: http://zipkinServer:8080
+  sleuth:
+    sampler:
+      probability: 0.5

@@ -11,7 +11,7 @@ services:
     depends_on:
       - eureka
     environment:
-      - spring.profiles.active=provider-s,sleuth-log
+      - spring.profiles.active=provider-s,sleuth-log,zipkin
     #      scale: 2
     volumes:
       - /opt/micro/ELK/log/:/log/
@@ -22,7 +22,7 @@ services:
     ports:
       - "4001:8080"
     environment:
-      - spring.profiles.active=provider-s,sleuth-log
+      - spring.profiles.active=provider-s,sleuth-log,zipkin
     volumes:
       - /opt/micro/ELK/log/:/log/
   gateway:
@@ -33,10 +33,7 @@ services:
       - "3000:8080"
     environment:
       - spring.profiles.active=single-eureka,route-agg,sleuth-log
-  filebeat:
-    image: docker.elastic.co/beats/filebeat:6.7.1
-    user: root
-    volumes:
-      - /opt/micro/ELK/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - /opt/micro/ELK/log/:/log/
-
+  zipkinServer:
+    image: sunbo/zipkin-server:1.0-SNAPSHOT
+    ports:
+      - "9411:8080"
